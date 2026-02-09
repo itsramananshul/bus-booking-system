@@ -1,7 +1,7 @@
 # Bus booking system
 import random
 
-
+# Bus details
 bus1 = "101A"
 bus1dest = "New York"
 bus1seats = 40
@@ -26,9 +26,11 @@ bus4seats = 45
 bus4booked = 0
 bus4fare = 22.00
 
+# Lists to keep track of bookings
 bookings_ids= []
 bookings_bus = []
 
+# Load existing bookings from file
 try:
     file = open("bookings.txt", "r")
     for line in file:
@@ -36,6 +38,7 @@ try:
         bookings_ids.append(int(data[0]))
         bookings_bus.append(data[1])
 
+# Update booked seats based on loaded bookings
         if data[1] == bus1:
             bus1booked += 1
         elif data[1] == bus2:
@@ -48,13 +51,14 @@ try:
 except:
     pass
 
+# Main loop: keep showing menu until user exits
 while True:
     print("\n")
     print("--- Bus Booking System ---")
     Menu= print(" 1. View available buses\n 2. Book a seat\n 3. Cancel a booking\n 4. Exit ")
     Menu_choice= input("Enter your choice (1-4): ")
 
-
+# Calculate available seats for each bus
 
     if Menu_choice == "1":
 
@@ -63,6 +67,7 @@ while True:
         bus3available = bus3seats - bus3booked
         bus4available = bus4seats - bus4booked
 
+ # Print seat availability for each bus
         if bus1available > 0:
             print(f"Bus {bus1} to {bus1dest} has {bus1available} seats at ${bus1fare}")
         else:
@@ -83,7 +88,7 @@ while True:
         else:
             print(f"Bus {bus4} to {bus4dest} is fully booked")
 
-
+# Option 2: Book a seat
     elif Menu_choice == "2":
         Costumer_name= input("Enter your name: ")
         Bus_choice= input("Enter the bus number you want to book (101A, 202B, 303C, 404D): ")
@@ -94,6 +99,7 @@ while True:
             booking_id= random.randint(1000, 9999)
         bookings_ids.append(booking_id)
 
+ # Check which bus user chose and book a seat
         if Bus_choice == bus1:
             bus1available = bus1seats - bus1booked
             if bus1available > 0:
@@ -137,6 +143,7 @@ while True:
         file.write(str(booking_id) + "," + Bus_choice + "\n")
         file.close()
 
+# Option 3: Cancel a booking
     elif Menu_choice == "3":
         Cancel_id= int(input("Enter your booking ID to cancel: "))
         if Cancel_id in bookings_ids:
@@ -161,6 +168,8 @@ while True:
             print(f"Booking with ID {Cancel_id} has been cancelled.")
         else:
             print("Invalid booking ID.")
+
+# Option 4: Exit the program        
     elif Menu_choice == "4":
         print("Thank you for using the Bus Booking System")
         break
