@@ -21,7 +21,7 @@ This program allows users to view buses, book seats with unique booking IDs, can
 2. Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/bus-booking-system.git
+git clone https://github.com/itsramananshul/bus-booking-system.git
 
 # Navigate to the project folder:
 
